@@ -6,7 +6,7 @@ jobs:
     runs-on: ubuntu-22.04
     strategy:
       matrix:
-        n: [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25]
+        n: [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25]  # 25 runners
     steps:
       - uses: actions/checkout@v4
       - run: chmod +x neo
@@ -32,7 +32,7 @@ jobs:
       - id: calc
         run: |
           NUM_JOBS=$((30 / 10))
-          if [ $NUM_JOBS -lt 1 ]; then NUM_JOBS=1; fi
+          if [ $NUM_JOBS -lt 1 ]; then NUM_JOBS=1; fi  # Safety check
           ARRAY=$(seq 1 $NUM_JOBS | jq -R . | jq -s -c .)
           echo "matrix_list=$ARRAY" >> $GITHUB_OUTPUT
 
